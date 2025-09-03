@@ -1,0 +1,106 @@
+/* style.css (Versión Reestructurada) */
+
+/* --- Variables y Estilos Globales --- */
+:root {
+    --primary-gold: #C7A349;
+    --dark-grey: #2C2C2C;
+    --off-white: #F6F5F2;
+    --white: #FFFFFF;
+    --light-grey: #e9ecef;
+    --font-montserrat: 'Montserrat', sans-serif;
+    --font-open-sans: 'Open Sans', sans-serif;
+    --transition-speed: 0.3s;
+}
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--font-open-sans);
+    background-color: var(--off-white);
+    color: var(--dark-grey);
+    line-height: 1.7;
+}
+.page-section { display: none; opacity: 0; }
+.page-section.active { display: block; opacity: 1; animation: fadeIn 0.6s ease-out; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* --- Header y Navegación --- */
+.main-header { background-color: var(--white); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.logo-link { text-decoration: none; }
+.logo-img { padding: 0px; max-height: 90px; }
+.logo-text { font-family: var(--font-montserrat); font-weight: 700; font-size: 1.7em; }
+.logo-part-vetabi, .logo-part-group { color: var(--dark-grey); }
+.logo-part-z { color: var(--primary-gold); }
+.logo-part-group { font-size: 0.6em; margin: px; }
+.navbar { background-color: var(--dark-grey) !important; border-bottom: 3px solid var(--primary-gold); }
+.navbar-brand { font-family: var(--font-montserrat); }
+.navbar-dark .navbar-nav .nav-link { font-family: var(--font-montserrat); font-weight: 600; margin: 10px; padding: 0.6rem 1rem; transition: all var(--transition-speed) ease; border-radius: 5px; }
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link.active { color: var(--dark-grey) !important; background-color: var(--primary-gold) !important; }
+
+/* --- Secciones Generales --- */
+section { padding: 80px 15px; }
+h2 { font-family: var(--font-montserrat); font-weight: 700; font-size: 2.8em; margin-bottom: 40px; }
+.text-gold { color: var(--primary-gold); }
+
+/* --- Hero Section --- */
+.hero-section { padding: 100px 15px; }
+.hero-section h1 { font-size: 3.2em; font-weight: 700; line-height: 1.3; }
+.cta-button { background-color: var(--primary-gold); color: var(--dark-grey); font-family: var(--font-montserrat); font-weight: 600; padding: 15px 35px; border-radius: 50px; font-size: 1.2em; transition: all var(--transition-speed) ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.cta-button:hover { background-color: #b3903f; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+/* --- Sección Nosotros --- */
+.cultura-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.07);
+    transition: all var(--transition-speed) ease;
+}
+.cultura-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+.cultura-card h3 { font-family: var(--font-montserrat); }
+.cultura-card i { font-size: 2.5rem; }
+
+/* Subsección Mensaje del CEO */
+.ceo-message-section { background-color: var(--dark-grey); color: var(--off-white); border-radius: 10px; }
+.ceo-message-section h3 { font-family: var(--font-montserrat); color: var(--primary-gold); }
+.ceo-img { width: 160px; height: 160px; object-fit: scale-down; border: 5px solid var(--primary-gold); }
+
+/* --- Sección Servicios (Unidades) --- */
+.section-subtitle {
+    font-family: var(--font-montserrat);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-gold);
+    display: inline-block;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+}
+.unit-card {
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    transition: all var(--transition-speed) ease;
+    padding: 30px;
+    border-left: 5px solid transparent;
+}
+.unit-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-left-color: var(--primary-gold); }
+.unit-card h3, .unit-card h4 { font-family: var(--font-montserrat); color: var(--dark-grey); }
+.unit-card p.unit-subtitle { font-weight: 600; color: var(--primary-gold); margin-top: -10px; }
+.unit-card ul { padding-left: 20px; }
+.unit-card.secondary { text-align: center; }
+.unit-card.secondary i { color: var(--primary-gold); font-size: 2rem; margin-bottom: 10px; }
+
+/* --- Contacto y Footer --- */
+#contacto { background-color: var(--primary-gold); }
+#contacto h2, #contacto p, #contacto a { color: var(--dark-grey); }
+#contacto .contact-info a { font-size: 1.3em; font-weight: 600; text-decoration: none; transition: all var(--transition-speed); }
+#contacto .contact-info a:hover { color: var(--white); transform: scale(1.05); }
+.footer { background-color: var(--dark-grey); color: var(--off-white); padding: 30px 15px; }
+
+/* --- Media Queries --- */
+@media (max-width: 991px) {
+    h2 { font-size: 2.2em; }
+    .hero-section h1 { font-size: 2.5em; }
+    section { padding: 60px 15px; }
+}

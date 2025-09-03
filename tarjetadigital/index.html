@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarjeta de Presentación Digital</title>
+
+<!-- Inclusión de Font Awesome para los iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Inclusión de html2canvas para la descarga de imagen -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+  :root{
+    --gold: #C7A349;        /* Dorado principal */
+    --dark-grey: #2C2C2C;   /* Fondo header y textos destacados */
+    --white: #FFFFFF;
+    --sky: #87CEEB;          /* Para detalles secundarios */
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    font-family:'Inter',sans-serif;
+    margin: 0;
+    padding: 40px 20px; /* Aumentamos el padding para dar espacio al footer */
+    display:flex;
+    flex-direction: column; /* Cambiamos la dirección para alinear elementos verticalmente */
+    align-items: center; /* Centramos todo */
+    justify-content:center;
+    min-height: 100vh; /* Aseguramos que el body ocupe toda la altura */
+
+    /* CAMBIAR: Pon aquí la ruta a tu imagen de fondo */
+    background-image: url('img/Fondo.png'); 
+    
+    background-color: var(--dark-grey); /* Color de respaldo si la imagen falla */
+    background-size: cover;             /* Hace que la imagen cubra todo el espacio */
+    background-repeat: no-repeat;       /* Evita que la imagen se repita */
+    background-attachment: fixed;       /* Mantiene la imagen fija al hacer scroll */
+    background-position: center;        /* Centra la imagen */
+  }
+
+  .card{
+    max-width: 400px;
+    width: 100%;
+    border-radius: 16px;
+    overflow:hidden;
+    border:1px solid #E5E5E5;
+    box-shadow:0 6px 18px rgba(0,0,0,.1);
+    background: var(--white);
+  }
+
+  /* HEADER */
+  .header{
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 25px 25px 25px;
+    background: var(--dark-grey);
+    color: var(--white);
+    text-align: center;
+  }
+
+  .logo{
+    position: absolute; 
+    top: 15px;          
+    right: 20px;       
+    height: 40px;      
+    object-fit: contain;
+  }
+
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .photo{
+    width: 100px;
+    height: 100px; 
+    border-radius:50%;
+    border:3px solid var(--gold);
+    object-fit:cover;
+  }
+
+  .header-text{
+    display: flex;
+    flex-direction: column;
+    gap: 4px; 
+  }
+  .name{ font-size: 20px; font-weight:700; color:var(--gold); }
+  .role{ font-size: 14px; color: var(--white); }
+
+
+  /* SOBRE MI */
+  .section-title{
+    font-weight: 700;
+    color: var(--gold);
+    margin: 25px 20px 0px 20px;
+    font-size: 17px;
+  }
+  .about{
+    padding: 15px 20px 0px 20px;
+    font-size: 13px;
+    color: var(--dark-grey);
+    line-height:1.6;
+  }
+
+  /* LISTA CONTACTO PRINCIPAL */
+  .contact-list{
+    display:flex;
+    flex-direction:column;
+    gap: 0px;
+    padding: 20px 25px 30px 25px;
+  }
+  .contact-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:14px;
+    color: var(--dark-grey);
+    text-decoration:none;
+    border-radius:12px;
+    padding:10px 12px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .contact-item:hover{
+    background: var(--gold);
+    color: var(--white);
+  }
+  .contact-item .icon{ 
+      width: 22px; 
+      text-align: center;
+      font-size: 16px;
+    }
+
+  /* REDES SOCIALES HORIZONTAL */
+  .socials{
+    display:flex;
+    justify-content:center;
+    gap: 15px;
+    padding-bottom: 25px;
+  }
+  .socials a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:40px; height:40px;
+    border-radius:50%;
+    background: var(--dark-grey);
+    color: var(--white);
+    transition: all 0.2s;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  .socials a:hover{
+    background: var(--gold);
+  }
+  
+  /* --- INICIO: NUEVOS ESTILOS --- */
+  
+  /* Contenedor para el botón de descarga */
+  .download-container {
+    padding: 0 25px 25px 25px; /* Espaciado interno */
+  }
+
+  /* Estilo del botón de descarga */
+  .download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--gold);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .download-btn:hover {
+    background-color: #a1823a; /* Un dorado un poco más oscuro */
+  }
+
+  /* Estilo del aviso de derechos de autor */
+  .copyright {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--white);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Sombra para mejor legibilidad */
+    text-align: center;
+  }
+  
+  /* --- FIN: NUEVOS ESTILOS --- */
+
+</style>
+</head>
+<body>
+
+<div class="card" id="businessCard">
+  <!-- HEADER -->
+  <div class="header">
+    <img src="assets/Logo.png" alt="Logo Vetabiz" class="logo">
+    <div class="profile-info">
+      <img src="img/CEO.jpeg" alt="Ana T. Paredes" class="photo"> 
+      <div class="header-text">
+        <div class="name">Ana T. Paredes</div>
+        <div class="role">CEO · Vetabiz Group</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOBRE MI -->
+  <div class="section-title">Sobre mí</div>
+  <div class="about">
+    Profesional en <strong>transformación digital</strong> y <strong>crecimiento de negocios</strong>. Apasionada por llevar a <strong>micro y pequeñas empresas</strong> hacia la formalización y la innovación tecnológica.
+  </div>
+
+  <!-- LISTA DE CONTACTO -->
+  <div class="section-title">Contacto</div>
+  <div class="contact-list">
+    <a href="https://maps.app.goo.gl/7PVLJtYmMWwfpi8v9" class="contact-item" target="_blank">
+        <i class="fas fa-map-marker-alt icon"></i>
+        <span>Av Lima 3021, San Martín de Porres 15106</span>
+    </a>
+    <a href="tel:+51967792352" class="contact-item">
+      <i class="fas fa-phone-alt icon"></i>
+      <span>+51 967 792 352</span>
+    </a>
+    <a href="mailto:aparedes@vetabiz.com" class="contact-item">
+      <i class="fas fa-envelope icon"></i>
+      <span>aparedes@vetabiz.com</span>
+    </a>
+    <a href="https://www.vetabiz.com" class="contact-item" target="_blank">
+      <i class="fas fa-globe icon"></i>
+      <span>www.vetabiz.com</span>
+    </a>
+  </div>
+
+  <!-- REDES SOCIALES -->
+  <div class="socials">
+    <a href="https://www.linkedin.com/company/vetabiz" target="_blank" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="https://wa.me/51967792352" target="_blank" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.facebook.com/vetabiz" target="_blank" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://www.instagram.com/vetabiz" target="_blank" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+
+  <!-- BOTÓN DE DESCARGA -->
+  <div class="download-container">
+    <button class="download-btn" id="downloadBtn">
+      <i class="fas fa-download"></i>
+      <span>Guardar como Imagen</span>
+    </button>
+  </div>
+</div>
+
+<!-- AVISO DE DERECHOS DE AUTOR -->
+<footer class="copyright">
+  &copy; <span id="year"></span> Vetabiz Group S.A.C. Todos los derechos reservados.
+</footer>
+
+
+<!-- --- SCRIPT PARA LA FUNCIONALIDAD --- -->
+<script>
+  // Script para la descarga de la imagen
+  document.getElementById('downloadBtn').addEventListener('click', function() {
+    const cardElement = document.getElementById('businessCard');
+    
+    html2canvas(cardElement, {
+      scale: 2, // Aumenta la escala para una mejor resolución de la imagen
+      useCORS: true // Necesario si las imágenes (logo, foto) están en otro dominio
+    }).then(canvas => {
+      const link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = 'tarjeta-digital-ana-paredes.png';
+      link.click();
+    });
+  });
+
+  // Script para actualizar el año automáticamente
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
